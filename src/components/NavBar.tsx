@@ -17,21 +17,8 @@ export default function SimpleBottomNavigation() {
   const router = useRouter();
   const [value, setValue] = React.useState(0);
 
-  // Function to handle navigation change
   const handleNavigationChange = (event, newValue) => {
     setValue(newValue);
-
-    // Define paths corresponding to each BottomNavigationAction
-    const paths = [
-      "/",// Home
-      "/profil/[id]",      // Profile
-      "/prispevok",         // Feed
-      "/auth/prihlasenie",       // Sign In
-      "/auth/registracia"        // Sign Up
-    ];
-
-    // Navigate to the new path based on the selected index
-    router.push(paths[newValue]);
   };
 
   return (
@@ -41,11 +28,11 @@ export default function SimpleBottomNavigation() {
         value={value}
         onChange={handleNavigationChange} // Updated to use the new handler
       >
-        <BottomNavigationAction label="Domov" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Profil" icon={<PersonIcon />} />
-        <BottomNavigationAction label="Príspevky" icon={<FeedIcon />} />
-        <BottomNavigationAction label="Prihlásenie" icon={<LoginIcon />} />
-        <BottomNavigationAction label="Registrácia" icon={<AppRegistrationIcon />} />
+        <BottomNavigationAction label="Domov" icon={<HomeIcon />} onClick={() => { setValue(0); router.push('/'); }} />
+        <BottomNavigationAction label="Profil" icon={<PersonIcon />} onClick={() => { setValue(0); router.push('/profil'); }} />
+        <BottomNavigationAction label="Príspevky" icon={<FeedIcon />} onClick={() => { setValue(0); router.push('/prispevok'); }} />
+        <BottomNavigationAction label="Prihlásenie" icon={<LoginIcon />} onClick={() => { setValue(0); router.push('/auth/prihlasenie'); }} />
+        <BottomNavigationAction label="Registrácia" icon={<AppRegistrationIcon onClick={() => { setValue(0); router.push('/auth/registracia'); }} />} />
       </BottomNavigation>
     </Box>
   );
