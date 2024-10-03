@@ -29,10 +29,10 @@ export default function SimpleBottomNavigation() {
         onChange={handleNavigationChange} // Updated to use the new handler
       >
         <BottomNavigationAction label="Domov" icon={<HomeIcon />} onClick={() => { setValue(0); router.push('/'); }} />
-        <BottomNavigationAction label="Profil" icon={<PersonIcon />} onClick={() => { setValue(0); router.push('/profil'); }} />
-        <BottomNavigationAction label="Príspevky" icon={<FeedIcon />} onClick={() => { setValue(0); router.push('/prispevok'); }} />
-        <BottomNavigationAction label="Prihlásenie" icon={<LoginIcon />} onClick={() => { setValue(0); router.push('/auth/prihlasenie'); }} />
-        <BottomNavigationAction label="Registrácia" icon={<AppRegistrationIcon onClick={() => { setValue(0); router.push('/auth/registracia'); }} />} />
+        <BottomNavigationAction label="Profil" icon={<PersonIcon />} onClick={() => { setValue(1); router.push('/profil'); }} />
+        <BottomNavigationAction label="Príspevky" icon={<FeedIcon />} onClick={() => { setValue(2); router.push('/prispevok'); }} />
+        <BottomNavigationAction label="Prihlásenie" icon={<LoginIcon />} onClick={() => { setValue(3); router.push('/auth/prihlasenie'); }} />
+        <BottomNavigationAction label="Registrácia" icon={<AppRegistrationIcon onClick={() => { setValue(4); router.push('/auth/registracia'); }} />} />
       </BottomNavigation>
     </Box>
   );
