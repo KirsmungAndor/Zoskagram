@@ -17,7 +17,7 @@ export default function SimpleBottomNavigation() {
   const router = useRouter();
   const [value, setValue] = React.useState(0);
 
-  const handleNavigationChange = (event, newValue) => {
+  const handleNavigationChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
