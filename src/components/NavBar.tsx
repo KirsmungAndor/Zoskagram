@@ -32,7 +32,7 @@ export default function SimpleBottomNavigation() {
         <BottomNavigationAction label="Profil" icon={<PersonIcon />} onClick={() => { setValue(1); router.push('/profil'); }} />
         <BottomNavigationAction label="Príspevky" icon={<FeedIcon />} onClick={() => { setValue(2); router.push('/prispevok'); }} />
         <BottomNavigationAction label="Prihlásenie" icon={<LoginIcon />} onClick={() => { setValue(3); router.push('/auth/prihlasenie'); }} />
-        <BottomNavigationAction label="Registrácia" icon={<AppRegistrationIcon onClick={() => { setValue(4); router.push('/auth/registracia'); }} />} />
+        <BottomNavigationAction label="Registrácia" icon={<AppRegistrationIcon />} onClick={() => { setValue(4); router.push('/auth/registracia'); }} />
       </BottomNavigation>
     </Box>
   );
