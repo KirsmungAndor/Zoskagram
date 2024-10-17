@@ -24,6 +24,19 @@ export default function SimpleBottomNavigation() {
     setValue(newValue);
   };
 
+  const authenticatedActions = [
+    <BottomNavigationAction key="home" label="Domov" icon={<HomeIcon />} onClick={() => { setValue(0); router.push('/'); }} />,
+    <BottomNavigationAction key="profile" label="Profil" icon={<PersonIcon />} onClick={() => { setValue(1); router.push('/profil'); }} />,
+    <BottomNavigationAction key="posts" label="Príspevky" icon={<FeedIcon />} onClick={() => { setValue(2); router.push('/prispevok'); }} />,
+    <BottomNavigationAction key="logout" label="Odhlásenie" icon={<LogoutIcon />} onClick={() => { setValue(3); signOut(); }} />
+  ];
+
+  const nonAuthenticatedActions = [
+    <BottomNavigationAction key="home" label="Domov" icon={<HomeIcon />} onClick={() => { setValue(0); router.push('/'); }} />,
+    <BottomNavigationAction key="login" label="Prihlásenie" icon={<LoginIcon />} onClick={() => { setValue(3); router.push('/auth/prihlasenie'); }} />,
+    <BottomNavigationAction key="register" label="Registrácia" icon={<AppRegistrationIcon />} onClick={() => { setValue(4); router.push('/auth/registracia'); }} />
+  ];
+
   return (
     <Box sx={{ width: '100%', position: 'fixed', bottom: 0 }}>
       <BottomNavigation
@@ -31,17 +44,7 @@ export default function SimpleBottomNavigation() {
         value={value}
         onChange={handleNavigationChange}
       >
-        <BottomNavigationAction label="Domov" icon={<HomeIcon />} onClick={() => { setValue(0); router.push('/'); }} />
-        <BottomNavigationAction label="Profil" icon={<PersonIcon />} onClick={() => { setValue(1); router.push('/profil'); }} />
-        <BottomNavigationAction label="Príspevky" icon={<FeedIcon />} onClick={() => { setValue(2); router.push('/prispevok'); }} />
-        {session ? (
-          <BottomNavigationAction label="Odhlásenie" icon={<LogoutIcon />} onClick={() => { setValue(3); signOut(); }} />
-        ) : (
-          [
-            <BottomNavigationAction key="login" label="Prihlásenie" icon={<LoginIcon />} onClick={() => { setValue(3); router.push('/auth/prihlasenie'); }} />,
-            <BottomNavigationAction key="register" label="Registrácia" icon={<AppRegistrationIcon />} onClick={() => { setValue(4); router.push('/auth/registracia'); }} />
-          ]
-        )}
+        {session ? authenticatedActions : nonAuthenticatedActions}
       </BottomNavigation>
     </Box>
   );
