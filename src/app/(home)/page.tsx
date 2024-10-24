@@ -1,17 +1,14 @@
 // src/app/page.tsx
 
-"use client";
-
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/authOptions';
 import AuthHomeView from '@/sections/AuthHomeView';
 import NonAuthHomeView from '@/sections/NonAuthHomeView';
 
-export default function Home() {
-  const { data: session } = useSession(); // Get the current session
+export const metadata = { title: "Domov | ZoškaSnap" };
 
-  return (
-    <div>
-      {session ? <AuthHomeView /> : <NonAuthHomeView />}
-    </div>
-  );
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
+  return session ? <AuthHomeView session={session} /> : <NonAuthHomeView />;
 }

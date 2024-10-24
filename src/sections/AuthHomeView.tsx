@@ -1,13 +1,16 @@
 // src/sections/AuthHomeView.tsx
 
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { Session } from 'next-auth';
 
-export default function AuthHomeView() {
+export default function AuthHomeView({ session }: { session: Session}) {
   return (
-    <div>
-      <Typography variant="h4">Welcome back, User!</Typography>
-      <Typography>This is your home feed.</Typography>
-      {/* Add more content for authenticated users here */}
-    </div>
+    <Container>
+      <Typography>Ste prihlásený.</Typography>
+      <Typography variant="h4" sx={{ mb: 3 }}>
+        Vitajte, {session?.user?.name  || "užívateľ"}!
+      </Typography>
+    </Container>
   );
 }
