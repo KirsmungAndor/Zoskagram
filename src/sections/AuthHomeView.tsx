@@ -7,10 +7,10 @@ import { Session } from 'next-auth';
 export default function AuthHomeView({ session }: { session: Session}) {
   return (
     <Container>
-      <Typography>Ste prihlásený.</Typography>
-      <Typography variant="h4" sx={{ mb: 3 }}>
+      <Typography variant="h4" sx={{ mt: 3, textAlign: 'center' }}>
         Vitajte, {session?.user?.name  || "užívateľ"}!
       </Typography>
-    </Container>
+      <Typography sx={{ textAlign: 'center' }}>Ste prihlásený.</Typography>
+      </Container>
   );
 }

@@ -1,14 +1,9 @@
-// src/app/auth/registracia/page.tsx
-"use client"; // Add this line
+// src/app/auth/prihlasenie/page.tsx
 
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import SignUpView from '../../../../sections/SignUpView'
+
+export const metadata = { title: `Registrácia | Zoškagram`, description: `Vytvorila Stredná priemyselná škola elektrotechnická`}
 
 export default function SignUp() {
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
-      <Typography variant="h4">Registrácia</Typography>
-      {/* Add your registration form here if you have one */}
-    </Box>
-  );
+  return <SignUpView />
 }

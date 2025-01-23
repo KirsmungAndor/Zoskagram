@@ -1,11 +1,9 @@
 // my-app/src/app/profil/[id]/page.tsx
 
-import Typography from '@mui/material/Typography';
+import ProfileView from '../../../../sections/ProfileView'
 
-export const metadata = { title: `Detail profilu | Zoškagram`}
+export const metadata = { title: `Detail profilu | Zoškagram`, description: `Vytvorila Stredná priemyselná škola elektrotechnická`}
 
 export default function ProfileDetail() {
-  return (
-    <Typography>Detail profilu</Typography>
-  );
+  return <ProfileView />
 }

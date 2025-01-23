@@ -1,11 +1,9 @@
 // my-app/src/app/gdpr/page.tsx
 
-import Typography from '@mui/material/Typography';
+import GDPRView from '../../../sections/GDPRView'
 
-export const metadata = { title: `GDPR Informácie | Zoškagram`}
+export const metadata = { title: `GDPR | Zoškagram`, description: `Vytvorila Stredná priemyselná škola elektrotechnická`}
 
 export default function GDPR() {
-  return (
-    <Typography>GDPR Informácie</Typography>
-  );
+  return <GDPRView />
 }

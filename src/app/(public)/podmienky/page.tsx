@@ -1,14 +1,9 @@
-// my-app/src/app/podmienky/page.tsx
+// my-app/src/app/gdpr/page.tsx
 
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import ToSView from '../../../sections/ToSView'
 
-export const metadata = { title: `Podmienky | Zoškagram`}
+export const metadata = { title: `Podmienky služby | Zoškagram`, description: `Vytvorila Stredná priemyselná škola elektrotechnická`}
 
-export default function TermsConditions() {
-  return (
-    <Container>
-        <Typography>Podmienky používania</Typography>
-    </Container>
-  );
+export default function GDPR() {
+  return <ToSView />
 }
