@@ -12,7 +12,7 @@ export default function ToSView() {
     <Container sx={{ mt: 3, mb: 10 }}>
         <Typography variant="h4" gutterBottom sx={{  textAlign: 'center' }}>Podmienky používania</Typography>
        <Stack spacing={2}>
-        <Typography variant="body1"><strong>1. Úvod</strong><br/>Tieto podmienky služby (ďalej len "Podmienky") upravujú vaše používanie sociálnej siete Zoškagram, ktorú prevádzkuje Stredná priemyselná škola elektrotechnická na Zochovej ulici v Bratislave (ďalej len "Prevádzkovateľ"). Používaním našej služby súhlasíte s týmito Podmienkami.</Typography>
+        <Typography variant="body1"><strong>1. Úvod</strong><br/>Tieto podmienky služby (ďalej len &quot;Podmienky&quot;) upravujú vaše používanie sociálnej siete Zoškagram, ktorú prevádzkuje Stredná priemyselná škola elektrotechnická na Zochovej ulici v Bratislave (ďalej len &quot;Prevádzkovateľ&quot;). Používaním našej služby súhlasíte s týmito Podmienkami.</Typography>
         <Typography variant="body1"><strong>2. Registrácia a účet</strong><br/></Typography>
         <ol>
           <li>Pri registrácii je potrebné poskytnúť pravdivé a aktuálne informácie.</li>

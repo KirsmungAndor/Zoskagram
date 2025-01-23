@@ -1,7 +1,6 @@
 // src/app/layout.tsx
 "use client";
 
-import { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/NavBar";
 import AuthProvider from "../components/AuthProvider";

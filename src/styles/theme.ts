@@ -35,6 +35,17 @@ export const lightTheme = createTheme({
                 }
             }
         },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    color: '#ffffff',
+                    textDecoration: 'none',
+                    '&:hover': {
+                        textDecoration: 'none',
+                    }
+                }
+            }
+        },
     },
 });
 
@@ -63,6 +74,17 @@ export const darkTheme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundColor: '#000000',
+                }
+            }
+        },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    color: '#ffffff',
+                    textDecoration: 'none',
+                    '&:hover': {
+                        textDecoration: 'none',
+                    }
                 }
             }
         },

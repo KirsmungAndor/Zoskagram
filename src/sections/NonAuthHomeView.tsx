@@ -5,9 +5,8 @@ import Typography from '@mui/material/Typography';
 export default function NonAuthHomeView() {
   return (
     <div>
-      <Typography variant="h4" sx={{ mt: 3 }}>Welcome to Zoškagram!</Typography>
-      <Typography>You aren't logged in. Log in to see your feed.</Typography>
-      {/* Add more content for non-authenticated users here */}
+      <Typography variant="h4" sx={{ mt: 3, textAlign: 'center' }}>Welcome to Zoškagram!</Typography>
+      <Typography sx={{ textAlign: 'center' }}>You aren&apos;t logged in. Log in to see your feed.</Typography>
     </div>
   );
 }
