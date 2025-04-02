@@ -4,26 +4,20 @@ import { prisma } from "@/app/api/auth/[...nextauth]/prisma";
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/authOptions';
 
-export type LikeActionResponse = {
-  success: boolean;
-  liked: boolean;
-  likesCount: number;
-  error?: string;
-};
+export async function toggleLike(postId: string) {
+  const session = await getServerSession(authOptions);
+  console.log('Server-side session:', JSON.stringify(session, null, 2));
+  
+  if (!session?.user?.id) {
+    console.log('No user ID in session');
+    return { success: false, error: 'Please sign in to like posts' };
+  }
 
-export async function toggleLike(postId: string): Promise<LikeActionResponse> {
+  console.log('User ID from session:', session.user.id);
+  console.log('Post ID:', postId);
+
   try {
-    const session = await getServerSession(authOptions);
-    
-    if (!session?.user?.id) {
-      return {
-        success: false,
-        liked: false,
-        likesCount: 0,
-        error: 'Unauthorized'
-      };
-    }
-
+    // Check if already liked
     const existingLike = await prisma.like.findUnique({
       where: {
         userId_postId: {
@@ -32,6 +26,8 @@ export async function toggleLike(postId: string): Promise<LikeActionResponse> {
         },
       },
     });
+
+    console.log('Existing like:', existingLike);
 
     if (existingLike) {
       // Unlike
@@ -58,23 +54,18 @@ export async function toggleLike(postId: string): Promise<LikeActionResponse> {
       where: { postId }
     });
 
-    return {
-      success: true,
+    return { 
+      success: true, 
       liked: !existingLike,
-      likesCount
+      likesCount 
     };
   } catch (error) {
     console.error('Error in toggleLike:', error);
-    return {
-      success: false,
-      liked: false,
-      likesCount: 0,
-      error: 'Failed to toggle like'
-    };
+    return { success: false, error: 'Failed to toggle like' };
   }
 }
 
-export async function getLikesCount(postId: string): Promise<number> {
+export async function getLikesCount(postId: string) {
   try {
     return await prisma.like.count({
       where: { postId }
@@ -85,11 +76,14 @@ export async function getLikesCount(postId: string): Promise<number> {
   }
 }
 
-export async function isPostLiked(postId: string): Promise<boolean> {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) return false;
+export async function isPostLiked(postId: string) {
+  const session = await getServerSession(authOptions);
+  
+  if (!session?.user?.id) {
+    return false;
+  }
 
+  try {
     const like = await prisma.like.findUnique({
       where: {
         userId_postId: {
@@ -98,7 +92,6 @@ export async function isPostLiked(postId: string): Promise<boolean> {
         },
       },
     });
-
     return !!like;
   } catch (error) {
     console.error('Error checking if post is liked:', error);

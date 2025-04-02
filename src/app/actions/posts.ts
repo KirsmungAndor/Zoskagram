@@ -1,65 +1,131 @@
 // src/app/actions/posts.ts
-
 "use server";
 
-// Import Prisma client
 import { prisma } from "@/app/api/auth/[...nextauth]/prisma";
+import { revalidatePath } from "next/cache";
 
-// Fetch all posts
 export const fetchPosts = async () => {
   try {
     const posts = await prisma.post.findMany({
       orderBy: { createdAt: "desc" },
-      include: { 
-        user: true,
-        images: true
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+        images: {
+          select: {
+            imageUrl: true,
+          },
+          take: 1,
+        },
+        likes: true,
+        _count: {
+          select: {
+            comments: true,
+          },
+        },
       },
     });
-
     return posts;
   } catch (error) {
     console.error("Error fetching posts:", error);
-    throw new Error("Could not fetch posts");
+    return [];
   }
 };
 
-// Fetch posts by a specific user ID
-export const fetchPostsByUserId = async (userId: string) => {
+export async function toggleLike(postId: string, userId: string) {
+  if (!userId) {
+    throw new Error("User ID is required to like a post");
+  }
+
   try {
-    const posts = await prisma.post.findMany({
-      where: { userId },
-      orderBy: { createdAt: "desc" },
+    const existingLike = await prisma.like.findUnique({
+      where: {
+        userId_postId: {
+          userId,
+          postId,
+        },
+      },
+    });
+
+    if (existingLike) {
+      await prisma.like.delete({
+        where: {
+          id: existingLike.id,
+        },
+      });
+      revalidatePath("/prispevok");
+      revalidatePath(`/prispevok/${postId}`);
+      return { liked: false };
+    } else {
+      await prisma.like.create({
+        data: {
+          userId,
+          postId,
+        },
+      });
+      revalidatePath("/prispevok");
+      revalidatePath(`/prispevok/${postId}`);
+      return { liked: true };
+    }
+  } catch (error) {
+    console.error("Error toggling like:", error);
+    throw error;
+  }
+}
+
+export async function getPostWithComments(postId: string) {
+  try {
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
       include: {
-        user: true,
-        images: true
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+        images: true,
+        likes: true,
+        comments: {
+          where: { parentId: null },
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+              },
+            },
+            likes: true,
+            replies: {
+              include: {
+                user: {
+                  select: {
+                    id: true,
+                    name: true,
+                    image: true,
+                  },
+                },
+                likes: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
       },
     });
 
-    return posts;
+    return post;
   } catch (error) {
-    console.error("Error fetching posts by userId:", error);
-    throw new Error("Could not fetch posts");
+    console.error("Error fetching post:", error);
+    throw error;
   }
-};
-
-// Create a new post
-export const createPost = async (userId: string, imageUrl: string, caption?: string) => {
-  try {
-    const newPost = await prisma.post.create({
-      data: {
-        userId,
-        caption,
-        images: {
-          create: {
-            imageUrl: imageUrl
-          }
-        }
-      },
-    });
-
-    return newPost;
-  } catch (error) {
-    console.error("Error creating post:", error);
-    throw new Error("Could not create post");
-  }
-};
+}

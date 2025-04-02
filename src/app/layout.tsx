@@ -21,14 +21,14 @@ export default function RootLayout({
   return (
     <html lang="sk">
       <body style={{ margin: 0 }}>
-        <ThemeProvider>
-          <CssBaseline />
-          <AuthProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <CssBaseline />
             <TopHeader />
             {children}
             <SimpleBottomNavigation />
-          </AuthProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
