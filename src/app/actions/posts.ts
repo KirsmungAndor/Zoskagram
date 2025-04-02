@@ -10,7 +10,10 @@ export const fetchPosts = async () => {
   try {
     const posts = await prisma.post.findMany({
       orderBy: { createdAt: "desc" },
-      include: { user: true }, // Include user who created the post
+      include: { 
+        user: true,
+        images: true
+      },
     });
 
     return posts;
@@ -26,6 +29,10 @@ export const fetchPostsByUserId = async (userId: string) => {
     const posts = await prisma.post.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
+      include: {
+        user: true,
+        images: true
+      },
     });
 
     return posts;
@@ -41,8 +48,12 @@ export const createPost = async (userId: string, imageUrl: string, caption?: str
     const newPost = await prisma.post.create({
       data: {
         userId,
-        imageUrl,
         caption,
+        images: {
+          create: {
+            imageUrl: imageUrl
+          }
+        }
       },
     });
 

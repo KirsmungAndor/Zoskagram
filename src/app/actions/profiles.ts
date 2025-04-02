@@ -39,3 +39,63 @@ export const fetchProfileByUserId = async (userId: string) => {
     throw new Error("Could not fetch profile");
   }
 };
+
+export async function searchProfiles(searchTerm: string) {
+  try {
+    if (!searchTerm.trim()) {
+      // Return recent profiles when search is empty
+      return await prisma.user.findMany({
+        orderBy: {
+          createdAt: 'desc'
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          image: true,
+          profile: {
+            select: {
+              avatarUrl: true
+            }
+          }
+        },
+        take: 10,
+      });
+    }
+
+    // Search for profiles matching the search term
+    return await prisma.user.findMany({
+      where: {
+        OR: [
+          {
+            name: {
+              contains: searchTerm,
+              mode: 'insensitive',
+            },
+          },
+          {
+            email: {
+              contains: searchTerm,
+              mode: 'insensitive',
+            },
+          },
+        ],
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        image: true,
+        profile: {
+          select: {
+            avatarUrl: true
+          }
+        }
+      },
+      take: 20,
+    });
+  } catch (error) {
+    console.error('Error searching profiles:', error);
+    throw new Error('Failed to search profiles');
+  }
+}

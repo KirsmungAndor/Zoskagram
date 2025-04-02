@@ -15,19 +15,19 @@ export default function GDPRView() {
       </Typography>
       <Stack spacing={2}>
         <Typography variant="body1">
-          <strong>Law:</strong> The Act No. 18/2018 Coll. on Protection of Personal Data and on Amendments to certain Acts (only available in Slovak here) (the Act) and the General Data Protection Regulation (Regulation (EU) 2016/679) (GDPR)
+          <strong>Zákon:</strong> Zákon č. 18/2018 Z. z. o ochrane osobných údajov a o zmene a doplnení niektorých zákonov (dostupný len v slovenskom jazyku) (ďalej len „zákon“) a všeobecné nariadenie o ochrane údajov (nariadenie (EÚ) 2016/679) (ďalej len „GDPR“)
         </Typography>
         <Typography variant="body1">
-          <strong>Regulator:</strong> Office for Personal Data Protection of the Slovak Republic (ÚOOÚ)
+          <strong>Regulátor:</strong> Úrad na ochranu osobných údajov Slovenskej republiky (ÚOOÚ)
         </Typography>
         <Typography variant="body1">
-          <strong>Summary:</strong> Slovakia implemented the GDPR in 2018 through the Act No. 18/2018 Coll. on Protection of Personal Data and on Amendments to certain Acts (the Act) which came into effect on May 25, 2018. The Act primarily replicates the provisions of the GDPR, introduces national derogations in certain areas, and transposes the Data Protection Directive with Respect to Law Enforcement (Directive (EU) 2016/680) into the Slovak legal system.
+          <strong>Zhrnutie:</strong> Slovensko implementovalo GDPR v roku 2018 prostredníctvom zákona č. 18/2018 Z. z. o ochrane osobných údajov a o zmene a doplnení niektorých zákonov (zákon), ktorý nadobudol účinnosť 25. mája 2018. Zákon predovšetkým kopíruje ustanovenia GDPR, zavádza vnútroštátne výnimky v niektorých oblastiach a transponuje smernicu o ochrane údajov vo vzťahu k presadzovaniu práva (smernica (EÚ) 2016/680) do slovenského právneho poriadku.
         </Typography>
         <Typography variant="body1">
-          The Office for Personal Data Protection of the Slovak Republic (ÚOOÚ) is the national supervisory authority in the area of data protection and has further powers and responsibilities beyond those specifically conferred by Article 58 of the GDPR, such as providing consultancy services in relation to personal data protection and expressing its view on proposed legislation concerning personal data protection. In addition, the ÚOOÚ has guidance on various data protection issues, notably including its list of processing operations which are subject to Data Protection Impact Assessment pursuant to Article 35 of the GDPR.
+        Úrad na ochranu osobných údajov Slovenskej republiky (ÚOOÚ) je vnútroštátnym dozorným orgánom v oblasti ochrany osobných údajov a má ďalšie právomoci a povinnosti nad rámec tých, ktoré sú výslovne uvedené v článku 58 GDPR, ako napríklad poskytovanie poradenských služieb v súvislosti s ochranou osobných údajov a vyjadrovanie sa k navrhovaným právnym predpisom týkajúcim sa ochrany osobných údajov. Okrem toho má ÚOOÚ usmernenia k rôznym otázkam ochrany údajov, najmä vrátane svojho zoznamu spracovateľských operácií, ktoré podliehajú posúdeniu vplyvu na ochranu údajov podľa článku 35 GDPR.
         </Typography>
       </Stack>
-      <Button variant="contained" color="primary" onClick={() => {router.push('/auth/registracia')}}>Späť</Button>
+      <Button variant="contained" color="primary" onClick={() => {router.push('/auth/registracia')}} sx={{ mt: 4, px: 4, borderRadius: '50px' }}>Späť</Button>
     </Container>
   );
 }

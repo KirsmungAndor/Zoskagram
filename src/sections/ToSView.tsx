@@ -47,7 +47,7 @@ export default function ToSView() {
         </ol>
         <Typography variant="body1"><strong>8. Kontaktné informácie</strong><br/>Ak máte akékoľvek otázky týkajúce sa týchto Podmienok, prosím, kontaktujte nás na office@zochova.sk. Používaním našej služby potvrdzujete, že ste si tieto Podmienky prečítali, rozumiete im a súhlasíte s nimi.</Typography>
        </Stack>
-       <Button variant="contained" color="primary" onClick={() => {router.push('/auth/registracia')}}>Späť</Button>
+       <Button variant="contained" color="primary" onClick={() => {router.push('/auth/registracia')}} sx={{ mt: 4, px: 4, borderRadius: '50px' }}>Späť</Button>
     </Container>
   );
 }

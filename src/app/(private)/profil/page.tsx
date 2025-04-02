@@ -1,9 +1,12 @@
 // my-app/src/app/profil/page.tsx
 
-import ProfileListView from '../../../sections/ProfileListView'
+import ProfileContent from '../../../components/ProfileContent';
 
-export const metadata = { title: `Zoznam profilov | Zoškagram`, description: `Vytvorila Stredná priemyselná škola elektrotechnická`}
+export const metadata = { 
+  title: `Môj profil | Zoškagram`, 
+  description: `Vytvorila Stredná priemyselná škola elektrotechnická`
+};
 
-export default function ProfileList() {
-  return <ProfileListView />
+export default function ProfilePage() {
+  return <ProfileContent />;
 }
